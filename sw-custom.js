@@ -20,7 +20,7 @@ workbox.core.setCacheNameDetails({
 workbox.precaching.cleanupOutdatedCaches();
 
 // Précache les ressources définies dans workbox-config.js
-workbox.precaching.precacheAndRoute([{"revision":"ef6bc10d7318d1db927d56e2a05a3a84","url":"debug-install.js"},{"revision":"cc1e9d3eb6a72b06b0e4b441675ef83c","url":"generate-cert.js"},{"revision":"1b7e6db05199f0276d407485806b8133","url":"index.html"},{"revision":"53d4f42474134ae650511e2e6a9fb159","url":"offline.html"},{"revision":"2ce1afe5c12b7b3770e7240837cfc0b6","url":"script.js"},{"revision":"cd0a120f9b21c059cb5d818cc286cf8d","url":"style.css"},{"revision":"ce4a58d3243519dbb5157c68b262dfd3","url":"manifest.json"},{"revision":"06487c6cf1e49efae33a8ea99faf712f","url":"img/icon-192x192.png"},{"revision":"35b66987f70c081e8e9eb9a14284618b","url":"img/icon-512x512.png"},{"revision":"35b66987f70c081e8e9eb9a14284618b","url":"img/maskable-icon.png"},{"revision":"35b66987f70c081e8e9eb9a14284618b","url":"img/screenshot.png"}]);
+workbox.precaching.precacheAndRoute(self.__WB_MANIFEST);
 
 // Stratégies de mise en cache déplacées depuis workbox-config.js
 // Stratégie pour les pages HTML

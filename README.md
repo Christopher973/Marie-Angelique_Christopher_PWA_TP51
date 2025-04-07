@@ -31,7 +31,17 @@ npm install
 node generate-cert.js
 ```
 
-5. Lancez un serveur local HTTPS (vous pouvez utiliser une extension comme "Live Server" dans VSCode)
+5. Générez le service worker avec Workbox :
+
+```
+npm run build
+```
+
+6. Lancez le serveur local HTTPS :
+
+```
+npm start
+```
 
 ## Comment utiliser l'application
 
@@ -67,14 +77,26 @@ Une fois installée, l'application fonctionne entièrement hors ligne. Si vous t
 - `offline.html` - Page affichée en mode hors ligne
 - `style.css` - Styles de l'application
 - `script.js` - Logique principale de l'application
+- `sw-custom.js` - Service worker personnalisé utilisant Workbox
 - `sw.js` - Service Worker pour le fonctionnement hors ligne
 - `manifest.json` - Manifeste pour l'installation en tant que PWA
 - `debug-install.js` - Script de débogage pour l'installation
 - `generate-cert.js` - Script pour générer des certificats SSL
+- `workbox-config.js` - Configuration de Workbox
+
+## Gestion du cache avec Workbox
+
+L'application utilise différentes stratégies de mise en cache selon le type de ressource :
+
+- Pages HTML : Stratégie "NetworkFirst" avec un délai d'attente de 3 secondes. En cas d'échec du réseau, la page est servie depuis le cache.
+- Ressources statiques (CSS, JS, images) : Stratégie "StaleWhileRevalidate" qui affiche la version en cache tout en mettant à jour en arrière-plan.
+- Navigation : Stratégie "NetworkFirst" qui tente d'abord de récupérer la page fraîche depuis le serveur.
+- Hors ligne : Une page personnalisée (offline.html) est affichée si l'utilisateur n'a pas de connexion.
 
 ## Technologies utilisées
 
 - HTML5, CSS3 et JavaScript vanilla
 - Progressive Web App (PWA)
-- Service Workers pour le fonctionnement hors ligne
-- Web App Manifest pour l'installation
+- Workbox pour la gestion avancée du service worker et du cache
+- Service Workers pour le - fonctionnement hors ligne
+- Web App Manifest pour l'installation sur les appareils

@@ -4,12 +4,22 @@
   "description": "",
   "main": "script.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node build-sw.js",
+    "start": "http-server -S -C cert.pem -K key.pem -p 8080"
   },
-  "keywords": [],
+  "keywords": [
+    "pwa",
+    "temperature",
+    "converter"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "selfsigned": "^2.4.1"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1",
+    "workbox-cli": "^7.0.0"
   }
 }
