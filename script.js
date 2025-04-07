@@ -67,9 +67,57 @@ document.addEventListener("DOMContentLoaded", () => {
       document.body.classList.add("installed-pwa");
       hideInstallBanner();
     } else {
-      // Si pas installée, vérifie l'historique des refus d'installation
-      checkInstallRefusals();
+      // Si pas encore installée, vérifier si l'application est installable
+      if (!isInstalledPWA()) {
+        // Vérifier après 1 seconde pour laisser le temps à l'événement beforeinstallprompt de se déclencher
+        setTimeout(() => {
+          if (deferredPrompt) {
+            showInstallBanner();
+          } else {
+            // Vérifier les conditions d'installabilité manuellement
+            checkInstallabilityAndShowMessage();
+          }
+        }, 1000);
+      }
     }
+  }
+
+  // Fonction pour vérifier si l'application est installée
+  function isInstalledPWA() {
+    return (
+      window.matchMedia("(display-mode: standalone)").matches ||
+      window.navigator.standalone === true
+    );
+  }
+
+  // Vérifier manuellement les conditions d'installabilité et afficher un message approprié
+  function checkInstallabilityAndShowMessage() {
+    // Vérifier si les icônes sont chargées correctement
+    const iconCheckPromises = [
+      "./img/icon-192x192.png",
+      "./img/icon-512x512.png",
+      "./img/maskable-icon.png",
+    ].map((src) => {
+      return new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => resolve(true);
+        img.onerror = () => resolve(false);
+        img.src = src;
+      });
+    });
+
+    Promise.all(iconCheckPromises).then((results) => {
+      const allIconsLoaded = results.every((result) => result === true);
+      fdebugInstallability;
+      if (!allIconsLoaded) {
+        console.error("PWA Debug: Icônes manquantes pour l'installation");
+
+        // Informer l'utilisateur dans la console que certaines icônes sont manquantes
+        const resultValue = document.getElementById("result-value");
+        resultValue.textContent =
+          "Installation non disponible : icônes manquantes";
+      }
+    });
   }
 
   // Vérifie combien de fois l'utilisateur a refusé l'installation

@@ -92,7 +92,7 @@ self.addEventListener("fetch", (event) => {
           // Si la ressource est une page HTML et que nous sommes hors ligne,
           // retourner la page offline.html
           if (event.request.headers.get("accept").includes("text/html")) {
-            return caches.match("/offline.html");
+            return caches.match("./offline.html");
           }
 
           // Pour les autres types de ressources, si elles ne sont pas dans le cache,
