@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Convertisseur de températures - PWA" />
+    <meta name="theme-color" content="#3498db" />
+    <title>Convertisseur de Températures</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="apple-touch-icon" href="img/icon-192x192.png" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Convertisseur de Températures</h1>
+
+      <!-- Bandeau d'installation -->
+      <div id="install-banner" class="install-banner">
+        <p>Installez cette application sur votre appareil</p>
+        <button id="install-button">Installer</button>
+        <button id="close-banner" class="close-button">×</button>
+      </div>
+
+      <div class="converter-form">
+        <div class="input-group">
+          <input
+            type="number"
+            id="temperature-input"
+            placeholder="Entrez une température"
+            step="0.01"
+          />
+          <select id="from-unit">
+            <option value="celsius">Celsius (°C)</option>
+            <option value="fahrenheit">Fahrenheit (°F)</option>
+            <option value="kelvin">Kelvin (K)</option>
+          </select>
+        </div>
+
+        <div class="arrow">→</div>
+
+        <div class="input-group">
+          <select id="to-unit">
+            <option value="fahrenheit">Fahrenheit (°F)</option>
+            <option value="celsius">Celsius (°C)</option>
+            <option value="kelvin">Kelvin (K)</option>
+          </select>
+        </div>
+
+        <button id="convert-button">Convertir</button>
+      </div>
+
+      <div id="result" class="result">
+        <span id="result-value"></span>
+      </div>
+
+      <div class="conversion-formulas">
+        <h3>Formules de conversion</h3>
+        <ul>
+          <li>Celsius en Fahrenheit: (°C × 9/5) + 32</li>
+          <li>Celsius en Kelvin: °C + 273.15</li>
+          <li>Fahrenheit en Celsius: (°F − 32) × 5/9</li>
+          <li>Fahrenheit en Kelvin: (°F − 32) × 5/9 + 273.15</li>
+          <li>Kelvin en Celsius: K - 273.15</li>
+          <li>Kelvin en Fahrenheit: (K - 273.15) × 9/5 + 32</li>
+        </ul>
+      </div>
+    </div>
+
+    <footer>
+      <p>PWA de Conversion de Températures | 2024</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+      // Enregistrement du Service Worker
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("sw.js")
+            .then((registration) => {
+              console.log(
+                "Service Worker enregistré avec succès:",
+                registration.scope
+              );
+            })
+            .catch((error) => {
+              console.error(
+                "Erreur lors de l'enregistrement du Service Worker:",
+                error
+              );
+            });
+        });
+      }
+    </script>
+  </body>
+</html>

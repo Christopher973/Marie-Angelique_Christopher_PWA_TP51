@@ -1,0 +1,215 @@
+/* Variables */
+:root {
+  --primary-color: #3498db;
+  --secondary-color: #2980b9;
+  --background-color: #f5f5f5;
+  --pwa-background-color: #e0f7fa;
+  --text-color: #333;
+  --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  --border-radius: 8px;
+}
+
+/* Style de base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  padding: 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.3s ease;
+}
+
+/* Classe pour le mode PWA installé */
+body.installed-pwa {
+  background-color: var(--pwa-background-color);
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: white;
+  padding: 25px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  flex: 1;
+}
+
+h1 {
+  text-align: center;
+  color: var(--primary-color);
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+}
+
+/* Bandeau d'installation */
+.install-banner {
+  display: none;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: var(--border-radius);
+  position: relative;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.install-banner p {
+  margin: 0;
+  flex-grow: 1;
+}
+
+.install-banner button {
+  background-color: white;
+  color: var(--primary-color);
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.close-button {
+  background: transparent !important;
+  color: white !important;
+  font-size: 20px;
+  padding: 0 !important;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Formulaire de conversion */
+.converter-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.input-group {
+  display: flex;
+  width: 100%;
+  gap: 10px;
+}
+
+input,
+select,
+button {
+  padding: 12px;
+  border-radius: var(--border-radius);
+  border: 1px solid #ddd;
+  font-size: 16px;
+  outline: none;
+}
+
+input {
+  flex-grow: 1;
+}
+
+input:focus,
+select:focus {
+  border-color: var(--primary-color);
+}
+
+button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-weight: bold;
+  padding: 12px 25px;
+  width: 100%;
+}
+
+button:hover {
+  background-color: var(--secondary-color);
+}
+
+.arrow {
+  font-size: 24px;
+  color: var(--primary-color);
+}
+
+/* Résultat de la conversion */
+.result {
+  background-color: var(--background-color);
+  padding: 15px;
+  border-radius: var(--border-radius);
+  text-align: center;
+  margin-bottom: 25px;
+  min-height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Formules de conversion */
+.conversion-formulas {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: var(--border-radius);
+  margin-top: 20px;
+}
+
+.conversion-formulas h3 {
+  color: var(--primary-color);
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.conversion-formulas ul {
+  list-style-type: none;
+}
+
+.conversion-formulas li {
+  margin-bottom: 8px;
+  padding-left: 15px;
+  position: relative;
+}
+
+.conversion-formulas li:before {
+  content: "•";
+  color: var(--primary-color);
+  position: absolute;
+  left: 0;
+}
+
+/* Pied de page */
+footer {
+  text-align: center;
+  margin-top: 20px;
+  color: #777;
+  font-size: 14px;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+  .container {
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .input-group {
+    flex-direction: column;
+  }
+}
